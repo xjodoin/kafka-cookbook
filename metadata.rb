@@ -9,12 +9,15 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.6.0'
 
 recipe 'kafka::default', 'Installs Kafka'
-recipe 'kafka::source', 'Downloads, compiles and installs Kafka from source releases'
-recipe 'kafka::binary', 'Downloads, extracts and installs Kafka from binary releases'
 
 attribute "kafka/broker/zookeeper_connect",
 :display_name => "Specifies the ZooKeeper connection string in the form hostname:port",
 :required => "required"
+
+attribute "kafka/broker/log_dirs",
+:display_name => "A comma-separated list of one or more directories in which Kafka data is stored.",
+:default => "/tmp/kafka-logs"
+:required => "optional"
 
 
 suggests 'java', '~> 1.22'
