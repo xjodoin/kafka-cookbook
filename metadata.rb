@@ -16,7 +16,7 @@ attribute "kafka/broker/zookeeper_connect",
 
 attribute "kafka/broker/log_dirs",
 :display_name => "A comma-separated list of one or more directories in which Kafka data is stored.",
-:default => "/tmp/kafka-logs"
+:default => "/tmp/kafka-logs",
 :required => "optional"
 
 
