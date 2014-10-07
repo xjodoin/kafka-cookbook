@@ -12,6 +12,11 @@ recipe 'kafka::default', 'Installs Kafka'
 recipe 'kafka::source', 'Downloads, compiles and installs Kafka from source releases'
 recipe 'kafka::binary', 'Downloads, extracts and installs Kafka from binary releases'
 
+attribute "kafka/broker/zookeeper_connect",
+:display_name => "Specifies the ZooKeeper connection string in the form hostname:port",
+:required => "required"
+
+
 suggests 'java', '~> 1.22'
 
 supports 'centos'
