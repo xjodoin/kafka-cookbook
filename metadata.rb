@@ -19,6 +19,17 @@ attribute "kafka/broker/log_dirs",
 :default => "/tmp/kafka-logs",
 :required => "optional"
 
+attribute "kafka/automatic_start",
+:display_name => "Automatically start kafka service.",
+:default => "false",
+:required => "optional"
+
+attribute "kafka/automatic_restart",
+:display_name => "Automatically restart kafka on configuration change.",
+:description => "This also implies `automatic_start` even if it's set to `false`. The reason for this is that I can see the need for automatically starting Kafka if it's not running, but not necessarily restart on configuration changes.",
+:default => "false",
+:required => "optional"
+
 
 suggests 'java', '~> 1.22'
 
