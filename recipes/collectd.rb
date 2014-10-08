@@ -1,8 +1,4 @@
 
-marker "recipe_start_rightscale" do
-  template "rightscale_audit_entry.erb"
-end
-
 chef_gem 'chef-rewind'
 require 'chef/rewind'
 
