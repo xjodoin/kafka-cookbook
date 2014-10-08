@@ -19,6 +19,10 @@ attribute "kafka/broker/log_dirs",
 :default => "/tmp/kafka-logs",
 :required => "optional"
 
+attribute "kafka/broker/advertised_host_name",
+:display_name => "If this is set this is the hostname that will be given out to producers, consumers, and other brokers to connect to.",
+:required => "optional"
+
 attribute "kafka/automatic_start",
 :display_name => "Automatically start kafka service.",
 :default => "false",
