@@ -9,6 +9,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.6.0'
 
 recipe 'kafka::default', 'Installs Kafka'
+recipe 'kafka::collectd', 'Configures monitoring by setting up collectd plugin for Kafka.'
 
 attribute "kafka/broker/zookeeper_connect",
 :display_name => "Specifies the ZooKeeper connection string in the form hostname:port",
