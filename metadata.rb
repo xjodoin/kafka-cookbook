@@ -8,6 +8,8 @@ description      'Installs and configures a Kafka broker'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.6.0'
 
+depends 'collectd', '~> 1.1.0'
+
 recipe 'kafka::default', 'Installs Kafka'
 recipe 'kafka::collectd', 'Configures monitoring by setting up collectd plugin for Kafka.'
 
