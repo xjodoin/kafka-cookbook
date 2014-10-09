@@ -94,7 +94,7 @@ LoadPlugin "org.collectd.java.GenericJMX"
 
 
     <MBean "kafka/broker-topic-metrics">
-        ObjectName "kafka.server:type=BrokerTopicMetrics"
+        ObjectName "\"kafka.server\":type=\"BrokerTopicMetrics\""
         #InstancePrefix ""
         #InstanceFrom ""
         <Value>
@@ -102,21 +102,21 @@ LoadPlugin "org.collectd.java.GenericJMX"
           #InstancePrefix ""
           #InstanceFrom ""
           Table false
-          Attribute "AllTopicsMessagesInPerSec"
+          Attribute "\"AllTopicsMessagesInPerSec\""
         </Value>
         <Value>
           Type "gauge"
           #InstancePrefix ""
           #InstanceFrom ""
           Table false
-          Attribute "AllTopicsBytesInPerSec"
+          Attribute "\"AllTopicsBytesInPerSec\""
         </Value>
         <Value>
           Type "gauge"
           #InstancePrefix ""
           #InstanceFrom ""
           Table false
-          Attribute "AllTopicsBytesOutPerSec"
+          Attribute "\"AllTopicsBytesOutPerSec\""
         </Value>
     </MBean>
 
@@ -327,7 +327,6 @@ LoadPlugin "org.collectd.java.GenericJMX"
         <Connection>
           Host "<%= @options[:instance_uuid] %>"
           ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
-          InstancePrefix "kafka"
           Collect "kafka/classes"
           Collect "kafka/compilation"
           Collect "kafka/memory"
