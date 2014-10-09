@@ -99,6 +99,13 @@ LoadPlugin "org.collectd.java.GenericJMX"
             InstanceFrom "name"
 
             <Value>
+              Type "counter"
+              #InstancePrefix ""
+              #InstanceFrom ""
+              Table false
+              Attribute "Count"
+            </Value>
+            <Value>
               Type "gauge"
               #InstancePrefix ""
               #InstanceFrom ""
