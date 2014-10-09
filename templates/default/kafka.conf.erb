@@ -1,17 +1,15 @@
 LoadPlugin java
 
 <Plugin "java">
+JVMARG "-Djava.class.path=/usr/share/collectd/java/collectd-api.jar:/usr/share/collectd/java/generic-jmx.jar"
 LoadPlugin "org.collectd.java.GenericJMX"
 
     <Plugin "GenericJMX">
-        ################
-        # MBean blocks #
-        ################
-        # Number of classes being loaded.
-        <MBean "classes">
-        ObjectName "java.lang:type=ClassLoading"
-        #InstancePrefix ""
-        #InstanceFrom ""
+
+        <MBean "kafka/classes">
+            ObjectName "java.lang:type=ClassLoading"
+            InstancePrefix "kafka_java"
+            #InstanceFrom ""
 
             <Value>
               Type "gauge"
@@ -22,11 +20,11 @@ LoadPlugin "org.collectd.java.GenericJMX"
             </Value>
         </MBean>
 
-        # Time spent by the JVM compiling or optimizing.
-        <MBean "compilation">
-        ObjectName "java.lang:type=Compilation"
-        #InstancePrefix ""
-        #InstanceFrom ""
+            # Time spent by the JVM compiling or optimizing.
+        <MBean "kafka/compilation">
+            ObjectName "java.lang:type=Compilation"
+            InstancePrefix "kafka_java"
+            #InstanceFrom ""
 
             <Value>
               Type "total_time_in_ms"
@@ -37,11 +35,45 @@ LoadPlugin "org.collectd.java.GenericJMX"
             </Value>
         </MBean>
 
-        # Garbage collector information
-        <MBean "garbage_collector">
-        ObjectName "java.lang:type=GarbageCollector,*"
-        InstancePrefix "gc-"
-        InstanceFrom "name"
+
+        <MBean "kafka/memory">
+            ObjectName "java.lang:type=Memory,*"
+            InstancePrefix "kafka_java_memory"
+            #InstanceFrom "name"
+            <Value>
+              Type "memory"
+              InstancePrefix "heap-"
+              #InstanceFrom ""
+              Table true
+              Attribute "HeapMemoryUsage"
+            </Value>
+
+            <Value>
+              Type "memory"
+              InstancePrefix "nonheap-"
+              #InstanceFrom ""
+              Table true
+              Attribute "NonHeapMemoryUsage"
+            </Value>
+        </MBean>
+
+        <MBean "kafka/memory_pool">
+            ObjectName "java.lang:type=MemoryPool,*"
+            InstancePrefix "kafka_java_memory_pool-"
+            InstanceFrom "name"
+            <Value>
+              Type "memory"
+              #InstancePrefix ""
+              #InstanceFrom ""
+              Table true
+              Attribute "Usage"
+            </Value>
+        </MBean>
+
+        <MBean "kafka/garbage_collector">
+            ObjectName "java.lang:type=GarbageCollector,*"
+            InstancePrefix "kafka_java_gc-"
+            InstanceFrom "name"
 
             <Value>
               Type "invocations"
@@ -58,65 +90,9 @@ LoadPlugin "org.collectd.java.GenericJMX"
               Table false
               Attribute "CollectionTime"
             </Value>
-
-            #      # Not that useful, therefore commented out.
-            #      <Value>
-              #        Type "threads"
-              #        #InstancePrefix ""
-              #        #InstanceFrom ""
-              #        Table false
-              #        # Demonstration how to access composite types
-              #        Attribute "LastGcInfo.GcThreadCount"
-              #      </Value>
         </MBean>
 
-        ######################################
-        # Define the "jmx_memory" type as:   #
-        #   jmx_memory  value:GAUGE:0:U      #
-        # See types.db(5) for details.       #
-        ######################################
 
-        # Generic heap/nonheap memory usage.
-        <MBean "memory">
-        ObjectName "java.lang:type=Memory"
-        #InstanceFrom ""
-        InstancePrefix "memory"
-
-            # Creates four values: committed, init, max, used
-            <Value>
-              Type "jmx_memory"
-              #InstancePrefix ""
-              #InstanceFrom ""
-              Table true
-              Attribute "HeapMemoryUsage"
-              InstancePrefix "heap-"
-            </Value>
-
-            # Creates four values: committed, init, max, used
-            <Value>
-              Type "jmx_memory"
-              #InstancePrefix ""
-              #InstanceFrom ""
-              Table true
-              Attribute "NonHeapMemoryUsage"
-              InstancePrefix "nonheap-"
-            </Value>
-        </MBean>
-
-        # Memory usage by memory pool.
-        <MBean "memory_pool">
-        ObjectName "java.lang:type=MemoryPool,*"
-        InstancePrefix "memory_pool-"
-        InstanceFrom "name"
-
-            <Value>
-              Type "jmx_memory"
-              #InstancePrefix ""
-              #InstanceFrom ""
-              Table true
-              Attribute "Usage"
-            </Value>
-        </MBean>
 
 
         #####################
@@ -125,11 +101,11 @@ LoadPlugin "org.collectd.java.GenericJMX"
         <Connection>
           ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
           Host "localhost"
-          Collect "classes"
-          Collect "compilation"
-          Collect "garbage_collector"
-          Collect "memory"
-          Collect "memory_pool"
+          Collect "kafka/classes"
+          Collect "kafka/compilation"
+          Collect "kafka/memory"
+          Collect "kafka/memory_pool"
+          Collect "kafka/garbage_collector"
         </Connection>
     </Plugin>
 </Plugin>
