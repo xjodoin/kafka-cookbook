@@ -24,7 +24,6 @@ collectd_plugin 'kafka' do
   template 'kafka.conf.erb'
   cookbook 'kafka'
   options({
-              :collectd_lib => node['collectd']['plugin_dir'],
               :instance_uuid => node['rightscale']['instance_uuid'],
           })
 end

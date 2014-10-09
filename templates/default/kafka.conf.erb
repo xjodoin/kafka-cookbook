@@ -100,7 +100,7 @@ LoadPlugin "org.collectd.java.GenericJMX"
         #####################
         <Connection>
           ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
-          Host "localhost"
+          Host "<%= @options[:instance_uuid] %>"
           Collect "kafka/classes"
           Collect "kafka/compilation"
           Collect "kafka/memory"
