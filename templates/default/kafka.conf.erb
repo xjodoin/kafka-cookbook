@@ -93,19 +93,257 @@ LoadPlugin "org.collectd.java.GenericJMX"
         </MBean>
 
 
+    <MBean "kafka/broker-topic-metrics">
+        ObjectName "kafka.server:type=BrokerTopicMetrics"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "AllTopicsMessagesInPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "AllTopicsMessagesInPerSec"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "AllTopicsBytesInPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "AllTopicsBytesInPerSec"
+        </Value
+        <Value>
+          Type "gauge"
+          InstancePrefix "AllTopicsBytesOutPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "AllTopicsBytesOutPerSec"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/request-metrics">
+        ObjectName "kafka.network:type=RequestMetrics"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "{Produce|Fetch-consumer|Fetch-follower}-RequestsPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "{Produce|Fetch-consumer|Fetch-follower}-RequestsPerSec"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "{Produce|Fetch-Consumer|Fetch-Follower}-TotalTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "{Produce|Fetch-Consumer|Fetch-Follower}-TotalTimeMs"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "{Produce|Fetch-Consumer|Fetch-Follower}-TotalTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "{Produce|Fetch-Consumer|Fetch-Follower}-QueueTimeMs"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "{Produce|Fetch-Consumer|Fetch-Follower}-TotalTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "{Produce|Fetch-Consumer|Fetch-Follower}-LocalTimeMs"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "{Produce|Fetch-Consumer|Fetch-Follower}-TotalTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "{Produce|Fetch-Consumer|Fetch-Follower}-RemoteTimeMs"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "{Produce|Fetch-Consumer|Fetch-Follower}-TotalTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "{Produce|Fetch-Consumer|Fetch-Follower}-ResponseSendTimeMs"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/consumer-fetcher-manager">
+        ObjectName "kafka.consumer:type=ConsumerFetcherManager"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "([-.\w]+)-MaxLag"
+          #InstanceFrom ""
+          Table false
+          Attribute "([-.\w]+)-MaxLag"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/log-flush-stats">
+        ObjectName "kafka.log:type=LogFlushStats"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "LogFlushRateAndTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "LogFlushRateAndTimeMs"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/replica-manager">
+        ObjectName "kafka.server:type=ReplicaManager"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "counter"
+          InstancePrefix "UnderReplicatedPartitions"
+          #InstanceFrom ""
+          Table false
+          Attribute "UnderReplicatedPartitions"
+        </Value>
+        <Value>
+          Type "counter"
+          InstancePrefix "PartitionCount"
+          #InstanceFrom ""
+          Table false
+          Attribute "PartitionCount"
+        </Value>
+        <Value>
+          Type "counter"
+          InstancePrefix "LeaderCount"
+          #InstanceFrom ""
+          Table false
+          Attribute "LeaderCount"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "ISRShrinksPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "ISRShrinksPerSec"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "ISRExpandsPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "ISRExpandsPerSec"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/replica-fetcher-manager">
+        ObjectName "kafka.server:type=ReplicaFetcherManager"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "([-.\w]+)-MaxLag"
+          #InstanceFrom ""
+          Table false
+          Attribute "([-.\w]+)-MaxLag"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/producer-request-purgatory">
+        ObjectName "kafka.server:type=ProducerRequestPurgatory"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "PurgatorySize"
+          #InstanceFrom ""
+          Table false
+          Attribute "PurgatorySize"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/fetch-request-purgatory">
+        ObjectName "kafka.server:type=FetchRequestPurgatory"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "PurgatorySize"
+          #InstanceFrom ""
+          Table false
+          Attribute "PurgatorySize"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/fetcher-lag-metrics">
+        ObjectName "kafka.server:type=FetcherLagMetrics"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "([-.\w]+)-ConsumerLag"
+          #InstanceFrom ""
+          Table false
+          Attribute "([-.\w]+)-ConsumerLag"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/controller">
+        ObjectName "kafka.controller:type=KafkaController"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "counter"
+          InstancePrefix "ActiveControllerCount"
+          #InstanceFrom ""
+          Table false
+          Attribute "ActiveControllerCount"
+        </Value>
+    </MBean>
+
+    <MBean "kafka/controller-stats">
+        ObjectName "kafka.controller:type=ControllerStats"
+        #InstancePrefix ""
+        #InstanceFrom ""
+        <Value>
+          Type "gauge"
+          InstancePrefix "LeaderElectionRateAndTimeMs"
+          #InstanceFrom ""
+          Table false
+          Attribute "LeaderElectionRateAndTimeMs"
+        </Value>
+        <Value>
+          Type "gauge"
+          InstancePrefix "UncleanLeaderElectionsPerSec"
+          #InstanceFrom ""
+          Table false
+          Attribute "UncleanLeaderElectionsPerSec"
+        </Value>
+    </MBean>
 
 
         #####################
         # Connection blocks #
         #####################
         <Connection>
-          ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
           Host "<%= @options[:instance_uuid] %>"
+          ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
+          InstancePrefix "kafka"
           Collect "kafka/classes"
           Collect "kafka/compilation"
           Collect "kafka/memory"
           Collect "kafka/memory_pool"
           Collect "kafka/garbage_collector"
+          Collect "kafka/broker-topic-metrics"
+          Collect "kafka/request-metrics"
+          Collect "kafka/consumer-fetcher-manager"
+          Collect "kafka/log-flush-stats"
+          Collect "kafka/replica-manager"
+          Collect "kafka/replica-fetcher-manager"
+          Collect "kafka/producer-request-purgatory"
+          Collect "kafka/fetch-request-purgatory"
+          Collect "kafka/fetcher-lag-metrics"
+          Collect "kafka/controller"
+          Collect "kafka/controller-stats"
         </Connection>
     </Plugin>
 </Plugin>
