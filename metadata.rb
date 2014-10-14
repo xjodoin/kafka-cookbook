@@ -47,7 +47,7 @@ attribute "kafka/heap_opts",
           :display_name => "JVM heap options for Kafka.",
           :required => "optional"
 
-attribute "kafka/automatic_jvm_performance_opts",
+attribute "kafka/jvm_performance_opts",
           :display_name => "JVM Performance options for Kafka.",
           :required => "optional"
 
