@@ -26,6 +26,12 @@ attribute "kafka/broker/advertised_host_name",
 :display_name => "If this is set this is the hostname that will be given out to producers, consumers, and other brokers to connect to.",
 :required => "optional"
 
+attribute "kafka/broker/auto_leader_rebalance_enable",
+          :display_name => "Balance leadership for partitions.",
+          :description => "If this is enabled the controller will automatically try to balance leadership for partitions among the brokers by periodically returning leadership to the 'preferred' replica for each partition if it is available.",
+          :default => "false",
+          :required => "optional"
+
 attribute "kafka/automatic_start",
 :display_name => "Automatically start kafka service.",
 :default => "false",
