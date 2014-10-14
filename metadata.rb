@@ -45,8 +45,6 @@ attribute "kafka/automatic_jvm_performance_opts",
           :display_name => "JVM Performance options for Kafka.",
           :required => "optional"
 
-default.kafka.jvm_performance_opts
-
 
 suggests 'java', '~> 1.22'
 
