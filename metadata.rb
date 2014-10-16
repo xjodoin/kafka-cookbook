@@ -16,7 +16,7 @@ recipe 'kafka::collectd', 'Configures monitoring by setting up collectd plugin f
 attribute "kafka/broker/zookeeper_connect",
 :display_name => "Specifies the ZooKeeper connection string in the form hostname:port",
 :required => "required"
-c
+
 attribute "kafka/broker/log_dirs",
 :display_name => "A comma-separated list of one or more directories in which Kafka data is stored.",
 :default => "/tmp/kafka-logs",
