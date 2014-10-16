@@ -16,7 +16,7 @@ recipe 'kafka::collectd', 'Configures monitoring by setting up collectd plugin f
 attribute "kafka/broker/zookeeper_connect",
 :display_name => "Specifies the ZooKeeper connection string in the form hostname:port",
 :required => "required"
-
+c
 attribute "kafka/broker/log_dirs",
 :display_name => "A comma-separated list of one or more directories in which Kafka data is stored.",
 :default => "/tmp/kafka-logs",
@@ -29,6 +29,12 @@ attribute "kafka/broker/advertised_host_name",
 attribute "kafka/broker/auto_leader_rebalance_enable",
           :display_name => "Balance leadership for partitions.",
           :description => "If this is enabled the controller will automatically try to balance leadership for partitions among the brokers by periodically returning leadership to the 'preferred' replica for each partition if it is available.",
+          :default => "false",
+          :required => "optional"
+
+attribute "kafka/broker/controlled_shutdown_enable",
+          :display_name => "Enable controlled shutdown of the broker.",
+          :description => "If enabled, the broker will move all leaders on it to some other brokers before shutting itself down. This reduces the unavailability window during shutdown.",
           :default => "false",
           :required => "optional"
 
